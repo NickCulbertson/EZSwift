@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController, UIWebViewDelegate{
+class ViewController: UIViewController, WKUIDelegate{
     @IBOutlet var Button1: UIButton!
     @IBOutlet var Button2: UIButton!
     @IBOutlet var Button3: UIButton!
     @IBOutlet var Button4: UIButton!
     @IBOutlet var Button5: UIButton!
-    @IBOutlet var webview1: UIWebView!
+    @IBOutlet var webview1: WKWebView!
     @IBOutlet var background: UIImageView!
     @IBOutlet var logo: UIImageView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
@@ -68,7 +69,7 @@ class ViewController: UIViewController, UIWebViewDelegate{
         logo.isHidden = false
 
         string1="about:blank"
-        webview1.loadRequest(URLRequest(url: URL(string: string1 as String)!))
+        webview1.load(URLRequest(url: URL(string: string1 as String)!))
 
     }
     
@@ -77,19 +78,7 @@ class ViewController: UIViewController, UIWebViewDelegate{
     func showWebsite() {
         self.hideMenu()
         webview1.isHidden = false
-        webview1.delegate = self
-        webview1.loadRequest(URLRequest(url: URL(string: string1 as String)!))
-    }
-    
-    func webViewDidStartLoad(_ webview1: UIWebView) {
-        activity.startAnimating()
-        activity.isHidden=false
-        
-    }
-    
-    func webViewDidFinishLoad(_ webview1: UIWebView) {
-        activity.stopAnimating()
-        activity.isHidden=true
+        webview1.load(URLRequest(url: URL(string: string1 as String)!))
     }
     
     override func viewDidLoad() {
